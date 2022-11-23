@@ -1,10 +1,33 @@
 .App {
   text-align: center;
 }
+*{
+  font-family: 'Share Tech Mono', monospace;
+}
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+.uk-text-purple{
+  color:purple
+}
+.dia{
+  position:fixed;
+  left:40%;
+  top:300px;
+}
+h1,h2,h3,h4,h5,h6{
+  
+  font-family: 'Share Tech Mono', monospace;
+}
+@media (max-width: 640px) {
+  .movil{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100px;
+  }
 }
 
 @media (prefers-reduced-motion: no-preference) {
