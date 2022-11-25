@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/atenserver/static/css/main.5585ffe4.css",
-    "main.js": "/atenserver/static/js/main.cdfec4a8.js",
+    "main.js": "/atenserver/static/js/main.2a5712c9.js",
     "static/js/787.5fb6836e.chunk.js": "/atenserver/static/js/787.5fb6836e.chunk.js",
     "static/media/logo.svg": "/atenserver/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/atenserver/index.html",
     "main.5585ffe4.css.map": "/atenserver/static/css/main.5585ffe4.css.map",
-    "main.cdfec4a8.js.map": "/atenserver/static/js/main.cdfec4a8.js.map",
+    "main.2a5712c9.js.map": "/atenserver/static/js/main.2a5712c9.js.map",
     "787.5fb6836e.chunk.js.map": "/atenserver/static/js/787.5fb6836e.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.5585ffe4.css",
-    "static/js/main.cdfec4a8.js"
+    "static/js/main.2a5712c9.js"
   ]
 }
