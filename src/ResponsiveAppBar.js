@@ -19,9 +19,10 @@ import DarkModeIcon from '@mui/icons-material/DarkMode';
 import { getAuth, signOut } from 'firebase/auth';
 import swal from 'sweetalert'
 import StorageIcon from '@mui/icons-material/Storage';
-import { FormControl, InputLabel, Select } from '@mui/material';
+import { Badge, FormControl, InputLabel, Select } from '@mui/material';
 import { amber, blue, blueGrey, brown, cyan, deepOrange, deepPurple, green, grey, indigo, lightBlue, lightGreen, lime, orange, pink, purple, red, teal, yellow } from '@mui/material/colors';
 import HomeIcon from '@mui/icons-material/Home';
+import { styled } from '@mui/material/styles';
 
 const pages = ['LOGIN','REGISTER'];
 const settings = ['Perfil', 'Cuenta', 'Logout'];
@@ -51,7 +52,40 @@ const ResponsiveAppBar = ({ handleChangeColor,age,setAge,dia, setDia,imagen,user
 
 
 
+  const StyledBadge = styled(Badge)(({ theme }) => ({
+    '& .MuiBadge-badge': {
+      backgroundColor: '#44b700',
+      color: '#44b700',
+      boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
+      '&::after': {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        borderRadius: '50%',
+        animation: 'ripple 1.2s infinite ease-in-out',
+        border: '1px solid currentColor',
+        content: '""',
+      },
+    },
+    '@keyframes ripple': {
+      '0%': {
+        transform: 'scale(.8)',
+        opacity: 1,
+      },
+      '100%': {
+        transform: 'scale(2.4)',
+        opacity: 0,
+      },
+    },
+  }));
   
+  const SmallAvatar = styled(Avatar)(({ theme }) => ({
+    width: 22,
+    height: 22,
+    border: `2px solid ${theme.palette.background.paper}`,
+  }));
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -210,12 +244,21 @@ const ResponsiveAppBar = ({ handleChangeColor,age,setAge,dia, setDia,imagen,user
               }
             }}><DarkModeIcon /></Button>}
             </div>
-            <Box sx={{ flexGrow: 0 }}>
+            {user ?  <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar>
-                    <img src={imagen} />
+                 
+                  <StyledBadge
+        overlap="circular"
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+        variant="dot"
+      >
+        <Avatar  sx={{ bgcolor: age[800] }}   alt="Remy Sharp" variant="circular">
+                   {user[0].toUpperCase()}
+                    {/* <img className="uk-width-1-1 uk-height-max-large" src={'https://th.bing.com/th/id/OIP.XmS_VttWx7IMqrkZ0m5y2AHaF1?pid=ImgDet&rs=1'} /> */}
                   </Avatar>
+      </StyledBadge>
+                  
                 </IconButton>
               </Tooltip>
               <Menu
@@ -241,9 +284,11 @@ const ResponsiveAppBar = ({ handleChangeColor,age,setAge,dia, setDia,imagen,user
                   <MenuItem key={'perfil'} onClick={handleCloseUserMenu}>
                     <Typography textAlign="center" onClick={salir}>{user}</Typography>
                   </MenuItem>
+               
                 
               </Menu>
-            </Box>
+            </Box> : ''}
+           
           </Toolbar>
         </Container>
       </AppBar>

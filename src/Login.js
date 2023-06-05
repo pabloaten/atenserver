@@ -4,7 +4,7 @@ import jsonServerProvider from "ra-data-json-server";
 import UserList from './UserList';
 import { useEffect, useState } from 'react';
 import axios from "axios"
-import { Alert, Box, Button,Tab, Card, Container, CssBaseline, Fab, Grid, Skeleton, Snackbar, TableSortLabel, Tabs, TextField, Typography } from '@mui/material';
+import { Alert, Box, Button,Tab, Card, Container, CssBaseline, Fab, Grid, Skeleton, Snackbar, TableSortLabel, Tabs, TextField, Typography, CardHeader, Avatar, IconButton, Divider } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { purple, red } from '@mui/material/colors';
 import AddIcon from '@mui/icons-material/Add';
@@ -183,13 +183,13 @@ const Login = ({user,setUser}) => {
    {user}
   </Typography>
    
-       
+  
   <Button onClick={logearse} variant="outlined">
         <span uk-icon="icon: google; ratio: 1"></span> Acceder
       </Button>
        
-     
-
+      <br/>
+      
         <div className="uk-flex uk-flex-around uk-flex-middle uk-flex-column uk-width-1-3">
        
        <TextField

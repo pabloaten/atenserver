@@ -12,7 +12,7 @@ import { AddIcCallRounded } from "@mui/icons-material";
 
 
 
-function UploadFiles({enlaces,setEnlaces,almacenamiento,setAlmacenamiento,setValor}) {
+function UploadFiles({actualizar,enlaces,setEnlaces,almacenamiento,setAlmacenamiento,setValor}) {
   const [progress, setProgress] = useState(0);
   const [url, setUrl] = useState('A')
   const [nombre, setNombre] = useState('')
@@ -32,95 +32,23 @@ function UploadFiles({enlaces,setEnlaces,almacenamiento,setAlmacenamiento,setVal
     },
 
   ];
-  useEffect(() => {
-actualizar()
+ 
 
-   /*  const getDatos = async () => {
-      let p = await getEquipos()
-      setLoading(false);
-    
-      let array = [];
-      p.docs.map((e) => {
-        array.push({ 'nombre': e.data().nombre, 'categoria': e.data().categoria })
-      })
-
-      setEquipos(array);
-      console.log(array)
-
-    }
-    getDatos(); */
-  }, [])
-  const actualizar = ()=>{
-    const storage = getStorage();
-    // Create a reference under which you want to list
-    const listRef = ref(storage, 'files');
-    let array = [];
-    // Find all the prefixes and items.
-    listAll(listRef)
-      .then((res) => {
-  
-  
-        let array = []
-        let array2 = [];
-        
-        res.items.map((itemRef) => {
-          // All the items under listRef.
-          /*  console.log(itemRef); */
-  
-          let archivo = ref(storage, itemRef._location.path);
-          
-         
-  
-          getDownloadURL(archivo)
-            .then((url) => {
-              getMetadata(archivo)
-              .then((metadata) => {
-                // Metadata now contains the metadata for 'images/forest.jpg'
-                console.log(metadata)
-                let fecha = new Date(metadata.timeCreated);
-              /* setEnlaces([{url: <a href={url} className="uk-text-danger">A</a>,nombre}]); */
-              array.push([itemRef._location.path.split("files/")[1], <a href={url}><span uk-icon="icon: download"></span></a>,metadata.size/1000000,metadata.contentType, fecha.toUTCString()])
-              /*    array.push({cell: () =>  <a href={url}>Hola</a> },{cell: () =>  <p >{itemRef._location.path} </p> }) */
-              setEnlaces([...array])
-              array2.push([metadata.size/1000000])
-              setAlmacenamiento([...array2])
-              
-           
-  
-              // Insert url into an <img> tag to "download"
-              })
-              .catch((error) => {
-                // Uh-oh, an error occurred!
-              });
-              
-             
-            })
-  
-        });
-        
-        
-  
-  
-      }).catch((error) => {
-        // Uh-oh, an error occurred!
-      }
-      );
-  
-  }
      
 
 
   const formHandler = (e) => {
     e.preventDefault();
-    console.log(e.target[0].files.length)
+    
     let i = 0;
     for (const key in e.target[0].files) {
-      console.log(e.target[0].files)
+    
       if(e.target[0].files.length >i){
-      uploadFiles(e.target[0].files[key]);
+      uploadFiles(e.target[0].files[key])
       }
       i++;
     }
+  
     
     
   };
@@ -147,10 +75,12 @@ actualizar()
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           console.log("File available at", downloadURL);
           setUrl(downloadURL)
+          
+
         });
       }
     );
-   
+ 
   };
   /* const handleDescargar = () => {
     console.log(url,'prueba.pdf')
@@ -164,6 +94,7 @@ actualizar()
     <div className="bgwhite">
      
       <div className="uk-flex uk-flex-column uk-flex-middle uk-flex-center" >
+        
         <form className="uk-flex uk-width-1-1 uk-flex-around uk-flex-middle movil" onSubmit={formHandler}>
 
           {/*  <button class="uk-button">escoger archivo</button> */}
@@ -176,8 +107,6 @@ actualizar()
         <div className="uk-width-1-1 uk-margin">
           <Progress
             percent={progress}
-
-
           />
 
           {/* <FileInput source="attachments">
@@ -191,7 +120,7 @@ actualizar()
 
       
 
-        {url == 'A' ? '' : <Button variant="outlined"><a className="uk-text-white" href={url} download={nombre}>Download my painting</a></Button>}
+        {/* {url  == 'A' ? '' :  */}<Button onClick={actualizar} variant="outlined">Actualizar</Button>{/* } */}
         {/* {url == 'A' ? '' :  <button onClick={handleDescargar}>Download my painting</button>} */}
         {/*  <h2>Uploading done {progress}%</h2> */}
       </div>

@@ -188,7 +188,7 @@ const Register = ({user,setUser}) => {
         <span uk-icon="icon: google; ratio: 1"></span> Acceder
       </Button>
        
-     
+     <br/>
 
         <div className="uk-flex uk-flex-around uk-flex-middle uk-flex-column uk-width-1-3">
        
@@ -216,13 +216,14 @@ const Register = ({user,setUser}) => {
             onChange={(e)=> setPassword(e.target.value)}
           />
           <br/>
-         
+         <div className="uk-flex uk-flex-row ">
          <Button size="large" fullWidth={true} variant="outlined" onClick={handleClick}>
    REGISTER
   </Button>
   <Button size="large" fullWidth={true} variant="outlined" onClick={olvidarContraseña}>
    OLVIDADO
   </Button>
+  </div>
   <Snackbar open={open} autoHideDuration={6000} onClose={handleClose} >
    <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
      This is a success message!

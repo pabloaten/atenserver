@@ -7,7 +7,7 @@ import Login from './Login';
 import { Acceso } from './firebase';
 import ResponsiveAppBar from './ResponsiveAppBar';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { cyan, green, purple, red, yellow } from '@mui/material/colors';
+import { blue, cyan, green, purple, red, yellow } from '@mui/material/colors';
 import { CircularProgress, CssBaseline } from '@mui/material';
 import Register from './Register';
 
@@ -21,13 +21,13 @@ const Rutas = () => {
   const [loading, setLoading] = useState(true)
   const [id, setId] = useState(0)
   const [administrador, setAdministrador] = useState(false) 
-  const [dia, setDia] = useState('light');
-  const [age, setAge] = useState(purple);
+  const [dia, setDia] = useState('dark');
+  const [age, setAge] = useState(blue);
   const darkTheme = createTheme({
     palette: {
       mode: dia,
       primary: age,
-      secondary: red,
+      secondary: age,
     },
     typography: {
       h2: {
@@ -72,6 +72,9 @@ const Rutas = () => {
         fontFamily:'Share Tech Mono',
         
       },
+      strong:{
+        color:age[100],
+      },
       
       poster: {
         color: 'red',
@@ -92,13 +95,24 @@ const Rutas = () => {
         '"Segoe UI Symbol"',
       ].join(','),
     },
+    components: {
+      MUIDataTablePagination: {
+        styleOverrides:{
+         root: {
+              color: age['A700']
+             
+          }
+        }
+      }
+    }
     
 
   });
   const handleChangeColor = (event) => {
+/*     localStorage.setItem('Color', JSON.stringify(age)); */
     setAge(event.target.value);
-    
   };
+  
 
   useEffect(() => {
     onAuthStateChanged(autorizacion,(usuarioFirebase)=>{
@@ -109,8 +123,15 @@ const Rutas = () => {
         setImagen(usuarioFirebase.reloadUserInfo.photoUrl);
         setLoading(false);
         setId(usuarioFirebase.uid);
-        setDia("light")
-        console.log(age)
+        console.log("Hola")
+       /* 
+        if(localStorage.getItem("Color") == null) {
+         
+          localStorage.setItem('Color', JSON.stringify(blue));
+          };
+        console.log(JSON.parse(localStorage.getItem("Color")))
+        setAge(JSON.parse(localStorage.getItem("Color"))) */
+        
       }else{
         //codigo en el caso que no tenga la sesion iniciada
         setUsuarioGlobal(null);
